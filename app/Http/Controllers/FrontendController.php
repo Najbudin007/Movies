@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -10,6 +11,16 @@ use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
+
+    public function index() {
+        $movies = Movie::latest()->get();
+        if($movies !== null) {
+            return view('Frontend.layouts.index', compact('movies'));
+        } else {
+            abort('404');
+        }
+    }
+
     // User Login
     public function login(){
         return view('Frontend.Auth.login');
@@ -18,11 +29,11 @@ class FrontendController extends Controller
         $data= $request->all();
         if(Auth::attempt(['email' => $data['email'], 'password' => $data['password'],'status'=>'active'])){
             Session::put('user',$data['email']);
-            request()->session()-> notify('success','Successfully login');
+            request()->session()->notify('success','Successfully login');
             return redirect()->route('home');
         }
         else{
-            request()->session()-> notify('error','Invalid email and password pleas try again!');
+            request()->session()->notify('error','Invalid email and password pleas try again!');
             return redirect()->back();
         }
     }

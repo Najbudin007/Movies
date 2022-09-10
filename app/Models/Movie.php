@@ -9,4 +9,7 @@ class Movie extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    public function userFavouriteMovies(){
+        return $this->hasMany(UserFavoriteMovie::class);
+    }
 }

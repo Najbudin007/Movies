@@ -1,32 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends("Frontend.layouts.master")
+@section("content")
+@include('Frontend.pages.banner')
+<!-- End Hero -->
 
-@include('Frontend.layouts.header')
 
-<body>
+  <!-- ======= Featured Services Section ======= -->
+  @include('Frontend.pages.movie')
+  <!-- End Featured Services Section -->
 
-  <!-- ======= Header ======= -->
-    @include('Frontend.layouts.navbar')
-  <!-- End Header -->
-
-  <!-- ======= Hero Section ======= -->
-    @include('Frontend.pages.banner')
-  <!-- End Hero -->
-
-  <main id="main">
-
-    <!-- ======= Featured Services Section ======= -->
-    @include('Frontend.pages.movie')
-    <!-- End Featured Services Section -->
-
-    <!-- ======= Contact Section ======= -->
-    @include('Frontend.pages.contact')
-    <!-- End Contact Section -->
-
-  </main>
-  <!-- End #main -->
-
- @include('Frontend.layouts.footer')
-</body>
-
-</html>
+  <!-- ======= Contact Section ======= -->
+  @include('Frontend.pages.contact')
+@endsection

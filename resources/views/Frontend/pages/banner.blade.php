@@ -1,15 +1,17 @@
 
-
-  <section id="hero" class="d-flex align-items-center">
+@foreach (App\Models\Movie::latest()->inRandomOrder()->take(1)->get() as $movie)
+  
+  <section id="hero" class="d-flex align-items-center" style="background: url('{{asset('images/'.$movie->poster)}}') top left !important;">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
-      <h1>Welcome to <span>Movie Browser</span></h1>
-      <h2>We are team of talented designers making  Movie Browser </h2>
+      <h1> <span>{{$movie->title}}</span></h1>
+      <h2>{!! $movie->description !!} </h2>
       <div class="d-flex">
         <a href="#services" class="btn-get-started scrollto">Get Started</a>
         <a href="#" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       </div>
     </div>
   </section>
+  @endforeach
 
 
   {{-- Fade Section --}}

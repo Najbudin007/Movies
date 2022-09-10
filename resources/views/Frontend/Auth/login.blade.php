@@ -1,6 +1,11 @@
-@include('Frontend.layouts.header')
-
-<div class="container contact mb-5">
+@extends("Frontend.layouts.master")
+@section("content")
+   
+@include("auth.login")
+<div class=" d-flex w-100 justify-content-center mb-5" style="margin-top: -100px !important;">
+    <a href="{{route("register")}}" class="btn btn-success">Register Now</a>
+</div>
+{{-- <div class="container contact mb-5">
     <div class="row">
 <div class="col-md-3"></div>
 
@@ -12,9 +17,8 @@
                 <p>Please login to see you faviorte Movies</p>
               </div>
 
-            <form action="{{route('login.submit')}}" method="post"  class="php-email-form">
+            <form action="{{route('login.submit')}}" method="post"  >
                 @csrf
-        
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="text" class="form-control" name="email" id="email" placeholder="User Email"
@@ -50,7 +54,7 @@
 
     </div>
 
-</div>
+</div> --}}
+@endsection
 
 
-@include('Frontend.layouts.footer')

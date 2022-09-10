@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MovieController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,19 +16,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Frontend.layouts.index');
-});
+
+
+Route::get('/',[FrontendController::class,'index'])->name('index');
 
 
 // Backend Routes
-Route::get('/dashboard', function () {
-    return view('Backend.layouts.dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::group(["middleware"=>[ "admin"],"prefix"=>"admin"],function(){
+    Route::get('/dashboard', function () {
+        return view('Backend.layouts.dashboard');
+    })->name('dashboard');
+    
+    Route::resource("/movies",MovieController::class);
+});
 
-Route::resource("/movies",MovieController::class);
 
-
+Route::group(["middleware"=>"user"],function(){
+    Route::get("/dashboard",[UserController::class,"dashboard"])->name("userDashboard");
+    Route::post("/add-to-favorite",[UserController::class,"addToFavourite"]);
+    Route::post("/delete-my-favourite/{id}",[UserController::class,"deleteFav"])->name("deleteFav");
+});
 // Frontend Routes
 
 // User login and Register
@@ -37,7 +45,6 @@ Route::get('user/logout',[FrontendController::class,'logout'])->name('user.logou
 
 // Route::get('user/register',[FrontendController::class,'register')->name('register.form');
 Route::post('user/register',[FrontendController::class,'registerSubmit'])->name('register.submit');
-// Reset password
-Route::post('password-reset',[FrontendController::class,'showResetForm'])->name('password.reset'); 
+
 
 require __DIR__.'/auth.php';

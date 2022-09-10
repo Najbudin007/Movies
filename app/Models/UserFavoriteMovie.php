@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class UserFavoriteMovie extends Model
 {
     use HasFactory;
+    protected $guarded = [];
+    public function movie(){
+        return $this->belongsTo(Movie::class);
+    }
 }
