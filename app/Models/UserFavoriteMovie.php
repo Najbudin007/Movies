@@ -9,7 +9,12 @@ class UserFavoriteMovie extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
     public function movie(){
         return $this->belongsTo(Movie::class);
     }
+
+    // public function user(){
+    //     return $this->hasOne(User::class,'id','name');
+    // }
 }

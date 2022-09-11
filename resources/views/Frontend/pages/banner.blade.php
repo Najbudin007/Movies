@@ -1,5 +1,5 @@
 
-@foreach (App\Models\Movie::latest()->inRandomOrder()->take(1)->get() as $movie)
+@foreach (App\Models\Movie::inRandomOrder()->take(1)->get() as $movie)
   
   <section id="hero" class="d-flex align-items-center" style="background: url('{{asset('images/'.$movie->poster)}}') top left !important;">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">

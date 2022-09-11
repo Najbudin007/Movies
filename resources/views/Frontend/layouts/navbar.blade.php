@@ -19,10 +19,6 @@
           </form>
           <div id="favi" class="ml-2">
 
-            <?php 
-              
-              ?>
-
             Fav( <span>{{ count(auth()->user()->favourites) }}</span> )
           </div>
           </li>

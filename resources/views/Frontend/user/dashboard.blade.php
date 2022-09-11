@@ -22,6 +22,7 @@
                     <p>Some content in menu 2.</p>
                 </div>
             </div> --}}
+
             <h1 class="text-center">Favourite Movies</h1>
             <hr>
             <div class="bg-light">

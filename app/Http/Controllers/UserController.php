@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\MailJob;
 use App\Models\Movie;
+use App\Models\User;
 use App\Models\UserFavoriteMovie;
 use Illuminate\Http\Request;
 
@@ -28,6 +30,7 @@ class UserController extends Controller
         "user_id"=> $uid,
       ]);
       if($result){
+        dispatch(new MailJob($mid));
         return response("added fav movie");
       }
       else{

@@ -28,8 +28,15 @@ Route::group(["middleware"=>[ "admin"],"prefix"=>"admin"],function(){
     })->name('dashboard');
     
     Route::resource("/movies",MovieController::class);
+    Route::get('/userFavorite',[MovieController::class,'UserFavorite'])->name("userFavorite");
 });
 
+
+// Route::get('/email', function() {
+
+//     Mail::to('email@email.com')->send(new SendMail());
+//     return new SendMail();
+// });
 
 Route::group(["middleware"=>"user"],function(){
     Route::get("/dashboard",[UserController::class,"dashboard"])->name("userDashboard");

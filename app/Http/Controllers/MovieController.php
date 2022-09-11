@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Movie;
+use App\Models\User;
+use App\Models\UserFavoriteMovie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -17,6 +19,12 @@ class MovieController extends Controller
     {
         $movies = Movie::latest()->paginate(2);
         return view("Backend.movie.index",compact("movies"));
+    }
+
+    public function UserFavorite() {
+        // $favorite = UserFavoriteMovie::latest()->paginate(2);
+        $favorite = User::latest()->with("favourites.movie")->get();
+        return view("Backend.UserFavorite.Favorite", compact("favorite"));
     }
 
     /**
